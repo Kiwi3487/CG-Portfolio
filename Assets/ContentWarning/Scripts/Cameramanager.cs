@@ -4,23 +4,27 @@ public class CameraSwitcher : MonoBehaviour
 {
     public Camera camera1;
     public Camera camera2;
+    public Camera camera3;
 
-    private GameObject activeCameraObj;
+    private GameObject[] cameras;
+    private int activeIndex = 0;
 
     void Start()
     {
-        activeCameraObj = camera1.gameObject;
-        camera1.gameObject.SetActive(true);
-        camera2.gameObject.SetActive(false);
+        cameras = new GameObject[] { camera1.gameObject, camera2.gameObject, camera3.gameObject };
+        for (int i = 0; i < cameras.Length; i++)
+        {
+            cameras[i].SetActive(i == activeIndex);
+        }
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            activeCameraObj.SetActive(false);
-            activeCameraObj = (activeCameraObj == camera1.gameObject) ? camera2.gameObject : camera1.gameObject;
-            activeCameraObj.SetActive(true);
+            cameras[activeIndex].SetActive(false);
+            activeIndex = (activeIndex + 1) % cameras.Length;
+            cameras[activeIndex].SetActive(true);
         }
     }
 }
