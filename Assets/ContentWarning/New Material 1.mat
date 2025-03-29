@@ -26,6 +26,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _QueueControl: 0
     - _X_OffSet: -2.69
     - _Z_OffSet: 0.85
     m_Colors:
